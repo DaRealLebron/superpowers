@@ -73,6 +73,14 @@ naming and copy rules, platform requirements — one line each, with exact
 values copied verbatim from the spec. Every task's requirements implicitly
 include this section.]
 
+## Verification Artifacts
+
+[How we'll know each part works. Each bullet is `<command>` — <success
+criterion>. Commands must be runnable; criteria must be observable. This
+section is REQUIRED in every plan.]
+
+- `<command>` — <observable success criterion>
+
 ---
 ```
 
@@ -125,6 +133,25 @@ git commit -m "feat: add specific feature"
 ```
 ````
 
+## Mandatory Final Task: Update Documentation
+
+Every plan's LAST task is "Update documentation." It is never optional and is
+never folded into another task — it is the terminal deliverable of the plan, so
+docs cannot be silently dropped. The task must name the specific docs to check
+and update (README, per-area docs, CHANGELOG/RELEASE-NOTES, and any usage/skill
+docs the change affects), and end with a commit step. (The task template's **Interfaces:** block is intentionally omitted here — a terminal documentation task has no downstream consumers.)
+
+```markdown
+### Task N (final): Update documentation
+
+**Files:**
+- Modify: `<exact doc paths the change affects>`
+
+- [ ] **Step 1: Update the docs** — reflect the new/changed behavior in each file above.
+- [ ] **Step 2: Verify** — `grep` the changed docs for the new terms, or re-read to confirm accuracy.
+- [ ] **Step 3: Commit** — `git commit -m "docs: document <feature>"`
+```
+
 ## No Placeholders
 
 Every step must contain the actual content an engineer needs. These are **plan failures** — never write them:
@@ -150,6 +177,10 @@ After writing the complete plan, look at the spec with fresh eyes and check the 
 **2. Placeholder scan:** Search your plan for red flags — any of the patterns from the "No Placeholders" section above. Fix them.
 
 **3. Type consistency:** Do the types, method signatures, and property names you used in later tasks match what you defined in earlier tasks? A function called `clearLayers()` in Task 3 but `clearFullLayers()` in Task 7 is a bug.
+
+**4. Verification Artifacts:** The plan has a `## Verification Artifacts` section, and every bullet is a runnable command with an observable success criterion. No vague aspirations.
+
+**5. Documentation task:** The final task is "Update documentation" and names the specific docs it touches.
 
 If you find issues, fix them inline. No need to re-review — just fix and move on. If you find a spec requirement with no task, add the task.
 

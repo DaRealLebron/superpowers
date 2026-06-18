@@ -75,11 +75,17 @@ include this section.]
 
 ## Verification Artifacts
 
-[How we'll know each part works. Each bullet is `<command>` — <success
-criterion>. Commands must be runnable; criteria must be observable. This
-section is REQUIRED in every plan.]
+[How we'll know each part works. Each bullet is `<command>` — <observable
+delta>. The criterion must name the postcondition that is FALSE before this
+plan and TRUE after — not merely that the command exited 0. A command can pass
+without the intended change having happened ("exit 0" / "tests green" alone is
+insufficient), so state what the output must SHOW that proves the specific new
+behavior now exists. This section is REQUIRED in every plan.]
 
-- `<command>` — <observable success criterion>
+- `<command>` — <observable delta: what is now true that was not before>
+- Weak (reject):   `pnpm test` — exit 0
+- Strong (accept): `pnpm test` — the suppression-gate test (absent before this
+  plan) now passes, proving outbound to a suppressed address is blocked
 
 ---
 ```
@@ -178,7 +184,7 @@ After writing the complete plan, look at the spec with fresh eyes and check the 
 
 **3. Type consistency:** Do the types, method signatures, and property names you used in later tasks match what you defined in earlier tasks? A function called `clearLayers()` in Task 3 but `clearFullLayers()` in Task 7 is a bug.
 
-**4. Verification Artifacts:** The plan has a `## Verification Artifacts` section, and every bullet is a runnable command with an observable success criterion. No vague aspirations.
+**4. Verification Artifacts:** The plan has a `## Verification Artifacts` section, and every bullet pairs a runnable command with an observable delta — the postcondition that is false before the change and true after. Reject any criterion that only asserts "exit 0" or "tests pass" without naming what that proves.
 
 **5. Documentation task:** The final task is "Update documentation" and names the specific docs it touches.
 

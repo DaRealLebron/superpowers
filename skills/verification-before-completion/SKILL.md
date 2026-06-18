@@ -26,7 +26,7 @@ If you haven't run the verification command in this message, you cannot claim it
 ```
 BEFORE claiming any status or expressing satisfaction:
 
-1. IDENTIFY: What command proves this claim?
+1. IDENTIFY: What command proves this claim — and what observable delta must its output show (a postcondition false before, true now)? "Exit 0" / "HTTP 200" rarely proves the change happened.
 2. RUN: Execute the FULL command (fresh, complete)
 3. READ: Full output, check exit code, count failures
 4. VERIFY: Does output confirm the claim?
@@ -49,6 +49,7 @@ Skip any step = lying, not verifying
 | Agent completed | VCS diff shows changes | Agent reports "success" |
 | Requirements met | Line-by-line checklist | Tests passing |
 | Docs updated | VCS diff shows the doc changes | "Code is self-explanatory", "will document later" |
+| Change actually happened | Observable delta: postcondition false before is now true | Command exit 0 / "HTTP 200" (proves it ran, not that it worked) |
 
 ## Red Flags - STOP
 
@@ -92,6 +93,12 @@ Skip any step = lying, not verifying
 ```
 ✅ [Run build] [See: exit 0] "Build passes"
 ❌ "Linter passed" (linter doesn't check compilation)
+```
+
+**Outcome, not just exit code:**
+```
+✅ [Run check] [See: old-world postcondition is now false, new-world true] "X now happens"
+❌ "Command exited 0" / "HTTP 200" (the command ran — that is not proof the intended change happened)
 ```
 
 **Requirements:**

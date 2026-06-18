@@ -27,7 +27,7 @@ This is a READ-ONLY review: do not modify any files. Output only your review.
 | Scope | No scope creep beyond the spec; no unrequested features |
 | Task decomposition | Tasks have clear boundaries; steps are concrete and actionable |
 | Buildability | Could an engineer follow this without getting stuck or guessing? |
-| Verification Artifacts | The plan has a `## Verification Artifacts` section; each entry is a runnable command with an observable success criterion — not vague aspirations |
+| Verification Artifacts | The plan has a `## Verification Artifacts` section; each entry is a runnable command paired with an observable delta — the postcondition that is false before the change and true after. Flag any criterion that only asserts "exit 0", "HTTP 200", or "tests pass" without naming what that output proves: a command can succeed without the intended change having happened |
 | Documentation | The plan's final task updates documentation; it is not missing or folded away |
 | Failure modes | What breaks at execution time? Ordering hazards, undefined references, environment assumptions, missing rollback |
 
@@ -39,8 +39,9 @@ unverifiable. Minor wording and stylistic preferences are not blocking.
 
 Recommend `revise` if there are serious gaps: missing spec requirements,
 contradictory steps, placeholder content, unrunnable or absent Verification
-Artifacts, a missing documentation task, or tasks too vague to act on.
-Otherwise recommend `proceed`.
+Artifacts, Verification Artifacts that prove only that a command ran rather than
+that the intended change happened, a missing documentation task, or tasks too
+vague to act on. Otherwise recommend `proceed`.
 
 ## Output Format
 

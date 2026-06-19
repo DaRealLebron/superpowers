@@ -100,6 +100,11 @@ check "product-discovery: discovery-to-PRD section"  "$PD" "## Discovery to PRD"
 check "product-discovery: carry-forward anti-rework" "$PD" "Carry findings forward"
 check "elicitation-methods: menu section"            "$EM" "## Elicitation Methods"
 
+# 13. BMAD absorption — architecture-design + readiness gate
+AD="skills/architecture-design/SKILL.md"
+check "architecture-design: readiness gate section"  "$AD" "## Implementation-Readiness Gate"
+check "architecture-design: PASS/CONCERNS/FAIL verdict" "$AD" "PASS / CONCERNS / FAIL"
+
 printf '\n%d passed, %d failed\n' "$pass" "$fail"
 if [[ "$fail" -gt 0 ]]; then
   exit 1

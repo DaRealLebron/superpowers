@@ -100,6 +100,12 @@ conflicts that only emerge from implementation.
 
 Use the least powerful model that can handle each role to conserve cost and increase speed.
 
+**Deterministic mechanical work** (rename, reformat, codemod, mass grep-replace,
+file moves) does not need a model at all: do it with shell/script with no subagent
+— `sed`, `grep`, a formatter, a one-off script. Work with one correct output is
+cheaper and more reliable as a command than as an LLM pass. Spend models only where
+judgment is needed; this is the cheapest tier below "mechanical implementation".
+
 **Mechanical implementation tasks** (isolated functions, clear specs, 1-2 files): use a fast, cheap model. Most implementation tasks are mechanical when the plan is well-specified.
 
 **Integration and judgment tasks** (multi-file coordination, pattern matching, debugging): use a standard model.

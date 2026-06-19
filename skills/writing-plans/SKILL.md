@@ -95,6 +95,12 @@ deliverable needs them; split only where a reviewer could meaningfully
 reject one task while approving its neighbor. Each task ends with an
 independently testable deliverable.
 
+When a task is purely mechanical — a rename, a reformat, a codemod, a mass
+grep-replace — write it as a shell/script step, not prose for an agent to reason
+through. A deterministic command is cheaper and more reliable than an LLM pass for
+work that has one correct output (NS2). Reserve agent reasoning for the steps that
+genuinely need judgment.
+
 ## Bite-Sized Task Granularity
 
 **Each step is one action (2-5 minutes):**

@@ -73,6 +73,11 @@ check "completion gate: docs-updated failure row"       "$VC" "Docs updated"
 check "dispatching: flat-delegation guardrail"          "$DP" "## Keep Delegation Flat (No Nested Subagents)"
 check "dispatching: no-nested-subagents wording"        "$DP" "do not spawn their own subagents"
 
+# 8. API/doc pre-verification (global lite rule)
+check "writing-plans: API Evidence section"            "$WP" "## API Evidence"
+check "reviewer: API/command evidence row"             "$RP" "API/command evidence"
+check "completion gate: external-API-confirmed row"    "$VC" "External API confirmed"
+
 printf '\n%d passed, %d failed\n' "$pass" "$fail"
 if [[ "$fail" -gt 0 ]]; then
   exit 1

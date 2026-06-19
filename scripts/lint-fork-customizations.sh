@@ -36,6 +36,7 @@ WP="skills/writing-plans/SKILL.md"
 RP="skills/writing-plans/plan-document-reviewer-prompt.md"
 VC="skills/verification-before-completion/SKILL.md"
 DP="skills/dispatching-parallel-agents/SKILL.md"
+SDD="skills/subagent-driven-development/SKILL.md"
 
 # 1. Required Verification Artifacts section + outcome-based (observable delta) wording
 check "writing-plans: Verification Artifacts section"   "$WP" "## Verification Artifacts"
@@ -80,6 +81,10 @@ check "completion gate: external-API-confirmed row"    "$VC" "External API confi
 
 # 9. Verify-before-acting on plan-review findings
 check "writing-plans: verify-before-acting on review"  "$WP" "discard that finding"
+
+# 10. Shell-first mechanical lane (plan + executor)
+check "writing-plans: shell-first mechanical lane"     "$WP" "shell/script step, not prose"
+check "subagent-driven: shell-first mechanical lane"   "$SDD" "shell/script with no subagent"
 
 printf '\n%d passed, %d failed\n' "$pass" "$fail"
 if [[ "$fail" -gt 0 ]]; then

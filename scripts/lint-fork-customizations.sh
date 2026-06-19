@@ -117,6 +117,11 @@ check "brainstorming: elicitation menu pointer" "$BR" "../product-discovery/elic
 # 16. BMAD absorption — scale-adaptive depth grafted into writing-plans
 check "writing-plans: scale-adaptive depth note" "$WP" "Match planning depth to project size"
 
+# 17. BMAD absorption — Finding A: oracle-strengthening tests
+TDD="skills/test-driven-development/SKILL.md"
+check "writing-plans: oracle-strength assertions"   "$WP"  "behaviorally-independent assertions"
+check "test-driven-development: oracle-strength rule" "$TDD" "survive a deliberately wrong implementation"
+
 printf '\n%d passed, %d failed\n' "$pass" "$fail"
 if [[ "$fail" -gt 0 ]]; then
   exit 1

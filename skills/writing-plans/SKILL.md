@@ -245,6 +245,16 @@ call the implementer builds against becomes a defect that surfaces at execution 
 when the context that could have caught it is gone. This rule is advisory: you may
 proceed on a named assumption, but the assumption must be visible, not silent.
 
+## Test Oracle Strength
+
+A Verification Artifact is only as good as the test behind it. Prefer
+**behaviorally-independent assertions** — a test that asserts the real observable outcome, not the
+shape of the implementation. For logic-heavy acceptance criteria, propose at least one property /
+invariant test alongside the example test, and trace each acceptance criterion to the test that
+covers it (AC → test). For P0/P1 (highest-risk) criteria, demand assertions strong enough that a
+wrong implementation fails them; run mutation testing on the changed module when the toolchain
+supports it.
+
 ## Remember
 - Exact file paths always
 - Complete code in every step — if a step changes code, show the code

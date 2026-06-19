@@ -203,6 +203,15 @@ Next failing test for next feature.
 | **Clear** | Name describes behavior | `test('test1')` |
 | **Shows intent** | Demonstrates desired API | Obscures what code should do |
 
+## Oracle Strength
+
+A test that passes is not enough — it must fail when the code is wrong. After GREEN, sanity-check
+that your assertion would survive a deliberately wrong implementation: if you broke the code, would
+this test catch it? Prefer assertions on real observable behavior over assertions that mirror the
+implementation's shape. For logic-heavy code, add a property or invariant test that covers the rule,
+not just one example; when the toolchain supports it, a mutation run is the cheapest proof your
+tests bite.
+
 ## Why Order Matters
 
 **"I'll write tests after to verify it works"**

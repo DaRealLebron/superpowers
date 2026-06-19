@@ -28,6 +28,7 @@ These bind every task. Copy them verbatim into any reviewer dispatch.
 - **Lint markers are `grep -qF` fixed strings:** each marker must appear **verbatim, case-sensitive, on a single physical line** of its target file. A marker that wraps across two lines never matches. After writing skill text, confirm the marker is on one line.
 - **Final lint count is 24.** The lint has 18 checks today; this plan adds exactly 6 (one per marker below). Task 3's verification and the documentation task both assert `24 passed, 0 failed`.
 - **Advisory, with override.** None of these behaviors hard-blocks; each is phrased as a rule the operator may consciously override (NS6). Do not introduce a hard gate.
+- **Tasks share two files and are NOT parallelizable.** Tasks 1–3 all edit `skills/writing-plans/SKILL.md` and `scripts/lint-fork-customizations.sh`, in non-overlapping regions. They must run strictly sequentially — never dispatch implementers in parallel (a Red Flag in subagent-driven-development). The "Consumes: nothing from earlier tasks" notes mean no *logical* dependency, not that the files are disjoint.
 
 **The six markers this plan adds** (target file → exact fixed string):
 
@@ -49,7 +50,7 @@ Each bullet is `<command>` — <observable delta: false before this plan, true a
 - `wsl.exe -e bash -lc "cd /root/projects/superpowers && grep -c 'External API confirmed' skills/verification-before-completion/SKILL.md"` — returns `1` (was `0`): the completion gate now has an external-API row.
 - `wsl.exe -e bash -lc "cd /root/projects/superpowers && grep -c 'discard that finding' skills/writing-plans/SKILL.md"` — returns `1` (was `0`): the verify-before-acting rule is present in the Adversarial Plan Review step.
 - `wsl.exe -e bash -lc "cd /root/projects/superpowers && grep -c 'shell/script with no subagent' skills/subagent-driven-development/SKILL.md"` — returns `1` (was `0`): the executor's mechanical lane is present.
-- `wsl.exe -e bash -lc "cd /root/projects/superpowers && git log --oneline main..feat/evidence-grounded-planning | grep -c ."` — returns ≥ `4` (was `1`, the spec commit only): the three implementation commits plus the docs commit now exist on the branch.
+- `wsl.exe -e bash -lc "cd /root/projects/superpowers && git log --oneline main..feat/evidence-grounded-planning | grep -c ."` — returns ≥ `6` (was `2`: the spec and plan commits): the three implementation commits plus the docs commit now exist on the branch.
 
 ---
 
@@ -284,19 +285,20 @@ Reflect the three new behaviors and the new lint count in the public docs. The f
 - Modify: `README.md` (behavior count + three new bullets)
 - Modify: `RELEASE-NOTES.md` (new entry)
 
-- [ ] **Step 1: Update `README.md`** — locate the behaviors list (currently "eight behaviors"). Change the count word to "eleven", and add three bullets after the existing fork-customization bullets:
-  - **API/doc pre-verification** — a plan must confirm an external API/CLI/schema exists (or mark it an explicit ASSUMPTION) before relying on it.
-  - **Verify-before-acting on review** — a reviewer's suggested fix is checked against what it cites before it is implemented; phantom findings are discarded.
-  - **Shell-first mechanical lane** — deterministic mechanical work (rename/format/codemod) goes to shell/script, not an LLM pass, in both the planner and the executor.
+- [ ] **Step 1: Update `README.md`** — three concrete edits:
+  1. Change the behaviors count word **eight → eleven** in the line that introduces the fork-behaviors list.
+  2. Add these three bullets immediately after the existing **Flat-delegation guardrail** bullet (the last fork-customization bullet in that list):
+     - **API/doc pre-verification** — a plan must confirm an external API/CLI/schema exists (or mark it an explicit ASSUMPTION) before relying on it.
+     - **Verify-before-acting on review** — a reviewer's suggested fix is checked against what it cites before it is implemented; phantom findings are discarded.
+     - **Shell-first mechanical lane** — deterministic mechanical work (rename/format/codemod) goes to shell/script, not an LLM pass, in both the planner and the executor.
+  3. Update the literal lint-count string `18 checks` → `24 checks` in the install instructions (a targeted replace of `18 checks` in `README.md` only — this string is separate from the behaviors-count word and is easy to miss).
 
-  If the README states the lint check count, update it to **24**.
+- [ ] **Step 2: Update `RELEASE-NOTES.md`** — *append* a new entry titled `## Fork: evidence-grounded planning (2026-06-19)` summarizing the three additions, noting the lint grew by six structural checks (24 total) and the customization count moved 8 → 11. Do NOT edit the prior dated entry — its `(18 checks total)` is a point-in-time historical record; only add the new entry.
 
-- [ ] **Step 2: Update `RELEASE-NOTES.md`** — add a new entry titled `## Fork: evidence-grounded planning (2026-06-19)` summarizing the three additions, noting the lint grew by six structural checks (24 total) and the customization count moved 8 → 11.
+- [ ] **Step 3: Verify the docs changed and no stale count remains**
 
-- [ ] **Step 3: Verify the docs changed** — confirm the new terms landed:
-
-Run: `wsl.exe -e bash -lc "cd /root/projects/superpowers && grep -c 'API/doc pre-verification' README.md && grep -c 'evidence-grounded planning' RELEASE-NOTES.md"`
-Expected: each `grep -c` returns `1` (was `0`).
+Run: `wsl.exe -e bash -lc 'cd /root/projects/superpowers && grep -c "API/doc pre-verification" README.md; grep -c "evidence-grounded planning" RELEASE-NOTES.md; grep -c "24 checks" README.md; grep -c "18 checks" README.md'`
+Expected: the first three counts print `1` (each was `0`); the last (`18 checks`) prints `0` — the stale install-count is gone from `README.md`. (`RELEASE-NOTES.md` keeps its historical `18 checks total`; this grep only inspects `README.md`.)
 
 - [ ] **Step 4: Re-run the lint as a final guard** — docs edits must not have disturbed the skills.
 

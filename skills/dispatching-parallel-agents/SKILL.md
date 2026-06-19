@@ -84,6 +84,27 @@ When agents return:
 - Run full test suite
 - Integrate all changes
 
+## Keep Delegation Flat (No Nested Subagents)
+
+Dispatch agents in ONE layer: the controller fans out, the agents report back, the
+controller integrates. **Dispatched subagents do not spawn their own subagents.** Keep
+delegation flat (depth 2: controller → agents).
+
+Why this is a rule, not a preference:
+- **Runaway recursion is a real, logged failure**, not a hypothetical — agent chains have
+  hit 20–50+ nesting levels and burned millions of tokens in minutes on trivial tasks,
+  and prompt-level "please don't recurse" guards have been observed to be ignored.
+- **Cost multiplies geometrically per layer** (concurrency^depth). A second fan-out layer
+  turns N agents into N×M, for no measured quality gain — measured composition benchmarks
+  show *deeper* delegation performing *worse* than flat.
+- **Observability.** Only a top-level agent's result returns to you; a nested
+  sub-subagent's reasoning stays buried in its parent's context where you cannot see it.
+  Flat fan-out keeps every agent's findings legible to the controller.
+
+If a dispatched agent's task looks big enough to need its own helpers, that is a signal to
+**split it into more controller-level agents**, not to let it recurse. Bring the
+decomposition up to the controller, where you can see and integrate all of it.
+
 ## Agent Prompt Structure
 
 Good agent prompts are:

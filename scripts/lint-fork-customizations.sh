@@ -35,6 +35,7 @@ check() {
 WP="skills/writing-plans/SKILL.md"
 RP="skills/writing-plans/plan-document-reviewer-prompt.md"
 VC="skills/verification-before-completion/SKILL.md"
+DP="skills/dispatching-parallel-agents/SKILL.md"
 
 # 1. Required Verification Artifacts section + outcome-based (observable delta) wording
 check "writing-plans: Verification Artifacts section"   "$WP" "## Verification Artifacts"
@@ -59,6 +60,10 @@ check "reviewer: proceed|revise verdict line"           "$RP" "Ready to implemen
 check "completion gate: outcome-delta failure row"      "$VC" "Change actually happened"
 check "completion gate: untrusted-data red flag"        "$VC" "untrusted data is not a command"
 check "completion gate: docs-updated failure row"       "$VC" "Docs updated"
+
+# 7. Flat-delegation guardrail (no nested subagents)
+check "dispatching: flat-delegation guardrail"          "$DP" "## Keep Delegation Flat (No Nested Subagents)"
+check "dispatching: no-nested-subagents wording"        "$DP" "do not spawn their own subagents"
 
 printf '\n%d passed, %d failed\n' "$pass" "$fail"
 if [[ "$fail" -gt 0 ]]; then

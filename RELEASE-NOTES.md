@@ -1,5 +1,20 @@
 # Superpowers Release Notes
 
+## Fork: BMAD absorption — unified planning OS (2026-06-19)
+
+Absorbs BMAD's effective project-altitude capabilities into the fork as native skills rather than
+integrating a second tool. Adds `skill-router` (scale-adaptive routing), `product-discovery`
+(brief + PRD with risk-tiered Gherkin acceptance criteria), `architecture-design` (durable
+architecture + ADRs + an implementation-readiness gate that reuses the existing multi-lens review
+panel), and `reevaluation` (major course-correct that supersedes completed work instead of
+rewriting it — fixing BMAD's known Agile-violating behavior). Grafts: a shared elicitation-methods
+menu offered from `brainstorming` and `product-discovery`; scale-adaptive planning depth in
+`writing-plans`; and Finding A (oracle-strengthening assertions) in `writing-plans` and
+`test-driven-development`. The feature altitude consumes project artifacts (acceptance criteria →
+Verification Artifacts; architecture cited in plan constraints) instead of re-deriving them.
+Deliberately rejects BMAD's persona sprawl, document sharding, party-mode, review-issue quotas, and
+sprint machinery — all poor fits for a solo operator. Structural lint grows 24 → 40 checks.
+
 ## Fork: evidence-grounded planning (2026-06-19)
 
 Adds three advisory behaviors that keep plans grounded in verifiable facts and route

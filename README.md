@@ -27,7 +27,7 @@ There's a bunch more to it, but that's the core of the system. And because the s
 
 ## Fork customizations
 
-This fork adds eleven behaviors on top of upstream Superpowers. All are **advisory**: the
+This fork adds fifteen behaviors on top of upstream Superpowers. All are **advisory**: the
 operator may override any gate by proceeding with an explicit statement of intent and reason.
 
 - **Adversarial plan review** — before implementation, `writing-plans` dispatches a required
@@ -64,6 +64,8 @@ operator may override any gate by proceeding with an explicit statement of inten
   before it is implemented; phantom findings are discarded.
 - **Shell-first mechanical lane** — deterministic mechanical work (rename/format/codemod) goes to
   shell/script, not an LLM pass, in both the planner and the executor.
+- **Project altitude (BMAD absorption):** `skill-router` routes work by scale (trivial → feature → project); `product-discovery` writes the brief + PRD; `architecture-design` writes the durable architecture + ADRs and runs a PASS/CONCERNS/FAIL readiness gate (reusing the review panel); `reevaluation` handles major change by superseding — not rewriting — completed work.
+- **Grafts:** a shared elicitation-methods menu (offered from `brainstorming` and `product-discovery`), scale-adaptive planning depth, and Finding A (oracle-strengthening test assertions). `40 checks`.
 
 A deterministic structural check, `scripts/lint-fork-customizations.sh`, verifies these
 behaviors remain present in the skill files after edits (no LLM; structure only — it does not
@@ -81,7 +83,7 @@ To use it in Claude Code instead of upstream:
 
 Both plugins are named `superpowers` and share skill names, so disable the upstream one to avoid a
 collision: open `/plugin`, toggle `superpowers@claude-plugins-official` **off**, then restart Claude
-Code. Verify the customizations are present with `bash scripts/lint-fork-customizations.sh` (24 checks
+Code. Verify the customizations are present with `bash scripts/lint-fork-customizations.sh` (40 checks
 should pass).
 
 See [`docs/workflow.md`](docs/workflow.md) for the happy-path flowcharts (upstream vs. this fork).

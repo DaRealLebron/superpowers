@@ -27,7 +27,7 @@ There's a bunch more to it, but that's the core of the system. And because the s
 
 ## Fork customizations
 
-This fork adds fifteen behaviors on top of upstream Superpowers. All are **advisory**: the
+This fork adds sixteen behaviors on top of upstream Superpowers. All are **advisory**: the
 operator may override any gate by proceeding with an explicit statement of intent and reason.
 
 - **Adversarial plan review** — before implementation, `writing-plans` dispatches a required
@@ -65,7 +65,12 @@ operator may override any gate by proceeding with an explicit statement of inten
 - **Shell-first mechanical lane** — deterministic mechanical work (rename/format/codemod) goes to
   shell/script, not an LLM pass, in both the planner and the executor.
 - **Project altitude (BMAD absorption):** `skill-router` routes work by scale (trivial → feature → project); `product-discovery` writes the brief + PRD; `architecture-design` writes the durable architecture + ADRs and runs a PASS/CONCERNS/FAIL readiness gate (reusing the review panel); `reevaluation` handles major change by superseding — not rewriting — completed work.
-- **Grafts:** a shared elicitation-methods menu (offered from `brainstorming` and `product-discovery`), scale-adaptive planning depth, and Finding A (oracle-strengthening test assertions). `40 checks`.
+- **Project-memory curation** — `curating-project-memory` drifts a project's `CLAUDE.md` (canonical),
+  its generated `AGENTS.md` mirror, scoped `.claude/rules/`, and `docs/` toward an optimal,
+  well-linked state at completion checkpoints (finishing a branch, the plan's final docs task, the
+  completion gate); tiny additions auto-apply while structural changes are proposed first, and drift
+  is bidirectional — a pass both records verified learnings and evicts bloat past a ~100-line budget.
+- **Grafts:** a shared elicitation-methods menu (offered from `brainstorming` and `product-discovery`), scale-adaptive planning depth, and Finding A (oracle-strengthening test assertions). `49 checks`.
 
 A deterministic structural check, `scripts/lint-fork-customizations.sh`, verifies these
 behaviors remain present in the skill files after edits (no LLM; structure only — it does not
@@ -83,7 +88,7 @@ To use it in Claude Code instead of upstream:
 
 Both plugins are named `superpowers` and share skill names, so disable the upstream one to avoid a
 collision: open `/plugin`, toggle `superpowers@claude-plugins-official` **off**, then restart Claude
-Code. Verify the customizations are present with `bash scripts/lint-fork-customizations.sh` (40 checks
+Code. Verify the customizations are present with `bash scripts/lint-fork-customizations.sh` (49 checks
 should pass).
 
 See [`docs/workflow.md`](docs/workflow.md) for the happy-path flowcharts (upstream vs. this fork).

@@ -1,5 +1,20 @@
 # Superpowers Release Notes
 
+## Fork: project-memory curation — CLAUDE.md drift built into the skills (2026-06-22)
+
+Adds a continuous curation discipline that drifts any project using the fork toward an optimal,
+well-linked agent-memory state as a side effect of normal work — never a manual audit. The new
+skill `curating-project-memory` owns a three-layer model: a lean canonical `CLAUDE.md` projected to
+a generated `AGENTS.md` mirror; scoped `.claude/rules/*.md` with `paths:` globs, mirrored to
+`.cursor/rules` and (where a glob maps to a directory) nested `AGENTS.md`; and `docs/` as the
+durable source of truth — with each fact in exactly one layer. Drift is bidirectional: a pass both
+records verified learnings and evicts bloat past a ~100-line budget down into docs or a path-scoped
+rule. Autonomy is auto-apply-tiny / confirm-structural. Grafted at three checkpoints (Moderate
+surface): `finishing-a-development-branch` runs a full pass, `writing-plans`' final docs task names
+`CLAUDE.md / AGENTS.md`, and `verification-before-completion` gains a "project memory current?" row.
+Claude Code is primary; other harnesses are generated mirrors. Structural lint grows 40 → 49 checks.
+Behavioral adherence still requires the live drill (follow-up once `evals/` lands).
+
 ## Fork: BMAD absorption — unified planning OS (2026-06-19)
 
 Absorbs BMAD's effective project-altitude capabilities into the fork as native skills rather than

@@ -5,7 +5,22 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
 MANIFEST="$REPO_ROOT/.kimi-plugin/plugin.json"
 
-python3 - "$MANIFEST" <<'PY'
+# Resolve a working Python 3. On Windows, "python3" may be a non-functional
+# Windows Store stub, so fall back to "python" (which is Python 3 on modern
+# Windows installs) and finally the stub.
+_pick_python() {
+  for candidate in python3 python; do
+    if cmd="$(command -v "$candidate" 2>/dev/null)"; then
+      if "$cmd" -c "import sys; sys.exit(0 if sys.version_info.major==3 else 1)" 2>/dev/null; then
+        echo "$cmd"
+        return 0
+      fi
+    fi
+  done
+  echo python3  # last resort – let it fail with a useful message
+}
+PYTHON3="$(_pick_python)"
+"$PYTHON3" - "$MANIFEST" <<'PY'
 import json
 import sys
 from pathlib import Path
@@ -21,7 +36,7 @@ def assert_present(text, needle, label):
     if needle not in text:
         raise AssertionError(f"{label}: missing {needle!r}")
 
-assert_equal(manifest.get("name"), "superpowers", "plugin name")
+assert_equal(manifest.get("name"), "hyperpowers", "plugin name")
 assert_equal(manifest.get("skills"), "./skills/", "skills path")
 assert_equal(
     manifest.get("sessionStart", {}).get("skill"),

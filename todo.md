@@ -15,10 +15,14 @@ These suites had their identifier strings updated during the rename but could **
 - `tests/antigravity/` — needs `agy`
 - `tests/pi/` — re-verify under `npx tsx` in a clean environment
 
-## 3. Give the Codex sync tooling a Hyperpowers path (or remove it)
-`scripts/sync-to-codex-plugin.sh` and `tests/codex-plugin-sync/` were intentionally left untouched in the rename. They still reference the old `superpowers` names and publish to the upstream-owned `prime-radiant-inc/openai-codex-plugins` (not yours). Decide:
-- Remove them, **or**
-- Point them at a Hyperpowers-owned Codex publish target and rebrand their internal references.
+## 3. Give the Codex sync tooling a Hyperpowers path (or remove it) — ✅ RESOLVED (2026-06-22)
+Resolved by **self-hosting**: added `.agents/plugins/marketplace.json` so `DaRealLebron/hyperpowers`
+is its own Codex marketplace (`codex plugin marketplace add DaRealLebron/hyperpowers` →
+`codex plugin install hyperpowers`), and **removed** `scripts/sync-to-codex-plugin.sh` and
+`tests/codex-plugin-sync/` (they published to the upstream-owned `prime-radiant-inc/openai-codex-plugins`).
+See `docs/hyperpowers/specs/2026-06-22-codex-publish-path-design.md`.
+**Still open:** the live `codex plugin install` round-trip needs verifying on a machine with the
+Codex CLI — folded into item #2's external-CLI checks.
 
 ## Other deferred items (from earlier work this cycle)
 - **Behavioral evals for the new skills** — the structural lint proves skill text is present, not that agents obey it. Add Drill eval scenarios for `curating-project-memory` (and the BMAD planning-OS skills) once `evals/` is in-tree. See the curation and BMAD design specs under `docs/hyperpowers/specs/`.

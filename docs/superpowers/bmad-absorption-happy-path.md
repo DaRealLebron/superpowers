@@ -38,7 +38,7 @@ flowchart TD
 
     FeatEntry --> Brainstorm
     Shell --> Plan
-    FinalRev --> Finish(["finishing-a-development-branch → merge"])
+    FinalRev --> Finish(["finishing-a-development-branch<br/>+ curate project memory → merge"])
 
     %% consumption seam (anti-duplication): feature altitude READS project artifacts
     Gate -. "PRD ACs → Verification Artifacts<br/>architecture cited in constraints<br/>(no re-spec)" .-> Plan
@@ -57,6 +57,11 @@ flowchart TD
 path; dotted arrows are the **consumption seam** (feature altitude reads project artifacts, never
 re-derives them) and the **upward escalation** loop (an architectural surprise during execution
 re-enters the project altitude through `reevaluation`).
+
+Since 2026-06-22 the merge step also runs a `curating-project-memory` pass: project memory
+(`CLAUDE.md` canonical → generated `AGENTS.md`, scoped `.claude/rules/`, and `docs/`) drifts toward
+an optimal, well-linked state as a side effect of finishing work. Design:
+`docs/superpowers/specs/2026-06-22-project-memory-curation-design.md`.
 
 ## What came from where
 

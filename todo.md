@@ -21,8 +21,13 @@ is its own Codex marketplace (`codex plugin marketplace add DaRealLebron/hyperpo
 `codex plugin install hyperpowers`), and **removed** `scripts/sync-to-codex-plugin.sh` and
 `tests/codex-plugin-sync/` (they published to the upstream-owned `prime-radiant-inc/openai-codex-plugins`).
 See `docs/hyperpowers/specs/2026-06-22-codex-publish-path-design.md`.
-**Still open:** the live `codex plugin install` round-trip needs verifying on a machine with the
-Codex CLI — folded into item #2's external-CLI checks.
+**Verified 2026-06-22 (Codex CLI 0.125.0):** `codex plugin marketplace add DaRealLebron/hyperpowers`
+resolves from GitHub and the root-source (`source.path: "./"`) cleanly maps the repo root to the plugin —
+the clone exposed `.codex-plugin/plugin.json`, `hooks/hooks-codex.json`, and all 19 skills incl. the
+`using-hyperpowers` bootstrap, and registered as a `source_type = "git"` marketplace. The spec's
+committed-`plugins/hyperpowers/`-subtree fallback is **not needed**.
+**Still open:** the final `/plugins` TUI step (install + enable into a session — cache-copy and bootstrap
+auto-trigger) is interactive in 0.125.0 and was not driven non-interactively.
 
 ## Other deferred items (from earlier work this cycle)
 - **Behavioral evals for the new skills** — the structural lint proves skill text is present, not that agents obey it. Add Drill eval scenarios for `curating-project-memory` (and the BMAD planning-OS skills) once `evals/` is in-tree. See the curation and BMAD design specs under `docs/hyperpowers/specs/`.

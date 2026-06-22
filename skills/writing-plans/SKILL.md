@@ -207,8 +207,8 @@ git commit -m "feat: add specific feature"
 Every plan's LAST task is "Update documentation." It is never optional and is
 never folded into another task — it is the terminal deliverable of the plan, so
 docs cannot be silently dropped. The task must name the specific docs to check
-and update (README, per-area docs, CHANGELOG/RELEASE-NOTES, and any usage/skill
-docs the change affects), and end with a commit step. (The task template's **Interfaces:** block is intentionally omitted here — a terminal documentation task has no downstream consumers.)
+and update (README, per-area docs, CHANGELOG/RELEASE-NOTES, the project's `CLAUDE.md / AGENTS.md`
+memory, and any usage/skill docs the change affects), and end with a commit step. (The task template's **Interfaces:** block is intentionally omitted here — a terminal documentation task has no downstream consumers.)
 
 ```markdown
 ### Task N (final): Update documentation

@@ -138,6 +138,7 @@ check "curating-project-memory: autonomy split"            "$CPM" "auto-apply ti
 # 20. Project-memory curation — checkpoint grafts (Moderate surface)
 FB="skills/finishing-a-development-branch/SKILL.md"
 check "finishing-a-branch: curation graft" "$FB" "curating-project-memory"
+check "writing-plans: memory in final docs task" "$WP" "CLAUDE.md / AGENTS.md"
 
 printf '\n%d passed, %d failed\n' "$pass" "$fail"
 if [[ "$fail" -gt 0 ]]; then

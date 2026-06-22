@@ -126,6 +126,15 @@ check "test-driven-development: oracle-strength rule" "$TDD" "survive a delibera
 check "writing-plans: AC→VA consumption seam"        "$WP"  "acceptance criteria become Verification Artifacts"
 check "subagent-driven: upward escalation to reeval" "$SDD" "escalate to reevaluation"
 
+# 19. Project-memory curation — new skill (CLAUDE.md drift built into the skills)
+CPM="skills/curating-project-memory/SKILL.md"
+check "curating-project-memory: three-layer model"         "$CPM" "Each fact lives in exactly one layer"
+check "curating-project-memory: canonical/mirror sync"     "$CPM" "CLAUDE.md is canonical; AGENTS.md is a generated mirror"
+check "curating-project-memory: .claude/rules scoped home" "$CPM" ".claude/rules/"
+check "curating-project-memory: curation pass section"     "$CPM" "## The Curation Pass"
+check "curating-project-memory: bidirectional drift"       "$CPM" "Drift is bidirectional"
+check "curating-project-memory: autonomy split"            "$CPM" "auto-apply tiny; confirm structural"
+
 printf '\n%d passed, %d failed\n' "$pass" "$fail"
 if [[ "$fail" -gt 0 ]]; then
   exit 1

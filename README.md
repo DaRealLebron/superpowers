@@ -82,7 +82,7 @@ To use it in Claude Code instead of upstream:
 ```
 
 Both plugins share skill names with upstream, so disable the upstream one to avoid a
-collision: open `/plugin`, toggle `hyperpowers@claude-plugins-official` **off**, then restart Claude
+collision: open `/plugin`, toggle `superpowers@claude-plugins-official` **off**, then restart Claude
 Code. Verify the customizations are present with `bash scripts/lint-fork-customizations.sh` (49 checks
 should pass).
 

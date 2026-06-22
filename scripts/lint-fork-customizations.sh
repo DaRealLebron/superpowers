@@ -135,6 +135,10 @@ check "curating-project-memory: curation pass section"     "$CPM" "## The Curati
 check "curating-project-memory: bidirectional drift"       "$CPM" "Drift is bidirectional"
 check "curating-project-memory: autonomy split"            "$CPM" "auto-apply tiny; confirm structural"
 
+# 20. Project-memory curation — checkpoint grafts (Moderate surface)
+FB="skills/finishing-a-development-branch/SKILL.md"
+check "finishing-a-branch: curation graft" "$FB" "curating-project-memory"
+
 printf '\n%d passed, %d failed\n' "$pass" "$fail"
 if [[ "$fail" -gt 0 ]]; then
   exit 1

@@ -9,7 +9,7 @@ description: Use when implementation is complete, all tests pass, and you need t
 
 Guide completion of development work by presenting clear options and handling chosen workflow.
 
-**Core principle:** Verify tests → Detect environment → Present options → Execute choice → Clean up.
+**Core principle:** Verify tests → Curate project memory → Detect environment → Present options → Execute choice → Clean up.
 
 **Announce at start:** "I'm using the finishing-a-development-branch skill to complete this work."
 
@@ -35,7 +35,15 @@ Cannot proceed with merge/PR until tests pass.
 
 Stop. Don't proceed to Step 2.
 
-**If tests pass:** Continue to Step 2.
+**If tests pass:** Continue to Step 1b.
+
+### Step 1b: Curate Project Memory
+
+With tests green, invoke the `curating-project-memory` skill before integrating: drift the
+project's `CLAUDE.md`, generated `AGENTS.md`, scoped `.claude/rules/`, and `docs/` toward their
+optimal state from what this branch actually verified. Tiny additions (a verified command, a
+one-line gotcha) auto-apply; new rules, evictions, and the `AGENTS.md` regeneration are proposed
+for approval first. This is the primary once-per-feature curation moment.
 
 ### Step 2: Detect Environment
 

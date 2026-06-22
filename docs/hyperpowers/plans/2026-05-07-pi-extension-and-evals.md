@@ -18,10 +18,10 @@
 
 - [ ] **Step 1: Write failing package/extension tests**
 
-Create `tests/pi/test-pi-extension.mjs` with tests that import `extensions/superpowers.ts`, register fake Pi handlers, and assert:
+Create `tests/pi/test-pi-extension.mjs` with tests that import `extensions/hyperpowers.ts`, register fake Pi handlers, and assert:
 - root `package.json` has `keywords` containing `pi-package`
 - root `package.json` has `pi.skills: ["./skills"]`
-- root `package.json` has `pi.extensions: ["./extensions/superpowers.ts"]`
+- root `package.json` has `pi.extensions: ["./extensions/hyperpowers.ts"]`
 - the extension registers `resources_discover`, `session_start`, `session_compact`, `context`, and `agent_end`
 - startup `context` injects exactly one user-role bootstrap message
 - `agent_end` clears startup injection
@@ -32,13 +32,13 @@ Create `tests/pi/test-pi-extension.mjs` with tests that import `extensions/super
 
 Run: `node --experimental-strip-types --test tests/pi/test-pi-extension.mjs`
 
-Expected: FAIL because `extensions/superpowers.ts` does not exist and `package.json` lacks the `pi` manifest.
+Expected: FAIL because `extensions/hyperpowers.ts` does not exist and `package.json` lacks the `pi` manifest.
 
 - [ ] **Step 3: Implement manifest fields**
 
 Update `package.json` with `description`, `keywords`, `pi.extensions`, and `pi.skills` while preserving existing `name`, `version`, `type`, and `main`.
 
-- [ ] **Step 4: Implement `extensions/superpowers.ts`**
+- [ ] **Step 4: Implement `extensions/hyperpowers.ts`**
 
 Create a zero-runtime-dependency extension that:
 - locates the package root from `import.meta.url`

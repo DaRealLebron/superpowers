@@ -72,7 +72,7 @@ Every text-replace phase runs against this preserve-list, including the rewrite 
 | Skill namespace (cross-refs in skills, hooks, docs) | `hyperpowers:` | `hyperpowers:` |
 | Bootstrap skill (dir, frontmatter `name:`, and **all** hook/extension references) | `using-hyperpowers` | `using-hyperpowers` |
 | Docs path (`git mv` + every reference) | `docs/hyperpowers/` | `docs/hyperpowers/` |
-| Plugin entry files (+ their internal refs and any config pointing at them) | `.opencode/plugins/superpowers.js`, `.pi/extensions/superpowers.ts` | `…/hyperpowers.{js,ts}` |
+| Plugin entry files (+ their internal refs and any config pointing at them) | `.opencode/plugins/hyperpowers.js`, `.pi/extensions/hyperpowers.ts` | `…/hyperpowers.{js,ts}` |
 | Manifest URLs (`homepage`, `repository`) | `github.com/obra/superpowers` | `github.com/DaRealLebron/hyperpowers` |
 | Manifest author/owner | `Jesse Vincent <jesse@fsck.com>` | `DaRealLebron <stephpangas@gmail.com>` |
 | Branding prose | "Superpowers" | "Hyperpowers" |
@@ -116,7 +116,7 @@ Every text-replace phase runs against this preserve-list, including the rewrite 
 4. **Docs path** — `git mv docs/hyperpowers docs/hyperpowers` + update every `docs/hyperpowers/`
    reference (including `CLAUDE.md`'s Documentation index and the skills that write to
    `docs/.../specs|plans`).
-5. **Plugin filenames** — rename `.opencode/plugins/superpowers.js`, `.pi/extensions/superpowers.ts`
+5. **Plugin filenames** — rename `.opencode/plugins/hyperpowers.js`, `.pi/extensions/hyperpowers.ts`
    + their internal refs and any config that points at them.
 6. **Branding + independence** — prose "Superpowers" → "Hyperpowers"; strip obra official-install
    README sections; add MIT attribution; remove `upstream` remote.

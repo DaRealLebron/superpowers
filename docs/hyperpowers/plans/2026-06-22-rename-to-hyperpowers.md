@@ -62,7 +62,7 @@
 
 - [ ] **Step 5: Edit `.claude-plugin/marketplace.json`** — `"name": "superpowers-dev"` → `"name": "hyperpowers"`; the plugin entry `"name": "superpowers"` → `"hyperpowers"`; `"Development marketplace for Superpowers core skills library"` → `"Marketplace for Hyperpowers core skills library"`; both owner and plugin `author` Jesse Vincent/jesse@fsck.com → DaRealLebron/stephpangas@gmail.com.
 
-- [ ] **Step 6: Edit `package.json`** — `"name": "superpowers"` → `"hyperpowers"`; `"description": "Superpowers skills and runtime bootstrap for coding agents"` → `"Hyperpowers skills and runtime bootstrap for coding agents"`. (Leave `"main": ".opencode/plugins/superpowers.js"` and the `.pi` extension path — Task 5 renames the files and updates these.)
+- [ ] **Step 6: Edit `package.json`** — `"name": "superpowers"` → `"hyperpowers"`; `"description": "Superpowers skills and runtime bootstrap for coding agents"` → `"Hyperpowers skills and runtime bootstrap for coding agents"`. (Leave `"main": ".opencode/plugins/hyperpowers.js"` and the `.pi` extension path — Task 5 renames the files and updates these.)
 
 - [ ] **Step 7: Edit `gemini-extension.json`** — `"name": "superpowers"` → `"hyperpowers"`.
 
@@ -136,7 +136,7 @@ Expected: the first grep prints **nothing**; lint `49 passed, 0 failed`.
 cd <worktree>
 grep -rln 'using-hyperpowers' . | grep -v -e codex-plugin-sync -e sync-to-codex-plugin | tee /tmp/boot-files.txt
 ```
-Expected: includes `hooks/session-start`, `hooks/session-start-codex`, `.opencode/plugins/superpowers.js`, `.pi/extensions/superpowers.ts`, `.kimi-plugin/plugin.json`, `scripts/lint-fork-customizations.sh`, and skill/doc cross-refs.
+Expected: includes `hooks/session-start`, `hooks/session-start-codex`, `.opencode/plugins/hyperpowers.js`, `.pi/extensions/hyperpowers.ts`, `.kimi-plugin/plugin.json`, `scripts/lint-fork-customizations.sh`, and skill/doc cross-refs.
 
 - [ ] **Step 4: Apply**
 
@@ -197,15 +197,15 @@ Expected: first grep prints **nothing**; `PATH_MOVED`; lint `49 passed`. **Note:
 
 ```
 cd <worktree>
-git mv .opencode/plugins/superpowers.js .opencode/plugins/hyperpowers.js
-git mv .pi/extensions/superpowers.ts .pi/extensions/hyperpowers.ts
+git mv .opencode/plugins/hyperpowers.js .opencode/plugins/hyperpowers.js
+git mv .pi/extensions/hyperpowers.ts .pi/extensions/hyperpowers.ts
 ```
 
 - [ ] **Step 2: Update references to those paths** (path-anchored; safe)
 
 ```
 cd <worktree>
-grep -rln -e '.opencode/plugins/superpowers.js' -e '.pi/extensions/superpowers.ts' . | grep -v -e codex-plugin-sync -e sync-to-codex-plugin | tee /tmp/fn-files.txt
+grep -rln -e '.opencode/plugins/hyperpowers.js' -e '.pi/extensions/hyperpowers.ts' . | grep -v -e codex-plugin-sync -e sync-to-codex-plugin | tee /tmp/fn-files.txt
 xargs perl -pi -e 's{\.opencode/plugins/superpowers\.js}{.opencode/plugins/hyperpowers.js}g; s{\.pi/extensions/superpowers\.ts}{.pi/extensions/hyperpowers.ts}g' < /tmp/fn-files.txt
 ```
 (This updates `package.json` `main` and the `.pi` extensions array.)

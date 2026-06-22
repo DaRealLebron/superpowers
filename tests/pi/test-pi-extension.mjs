@@ -8,7 +8,7 @@ import test from 'node:test';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const repoRoot = resolve(__dirname, '../..');
 const packageJsonPath = resolve(repoRoot, 'package.json');
-const extensionPath = resolve(repoRoot, '.pi/extensions/superpowers.ts');
+const extensionPath = resolve(repoRoot, '.pi/extensions/hyperpowers.ts');
 const piToolsPath = resolve(repoRoot, 'skills/using-hyperpowers/references/pi-tools.md');
 
 async function readPackageJson() {
@@ -48,7 +48,7 @@ test('package.json declares a pi package with skills and extension resources', a
   assert.equal(pkg.name, 'superpowers');
   assert.ok(pkg.keywords.includes('pi-package'));
   assert.deepEqual(pkg.pi.skills, ['./skills']);
-  assert.deepEqual(pkg.pi.extensions, ['./.pi/extensions/superpowers.ts']);
+  assert.deepEqual(pkg.pi.extensions, ['./.pi/extensions/hyperpowers.ts']);
 });
 
 test('extension registers lifecycle hooks without pre-compaction injection', async () => {

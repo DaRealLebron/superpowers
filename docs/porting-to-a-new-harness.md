@@ -254,8 +254,8 @@ The harness loads a JS/TS module that exposes lifecycle callbacks. You register
 the skills directory through the harness's API and inject the bootstrap by
 mutating the message array in code.
 
-- Reference: `.opencode/plugins/superpowers.js` (JavaScript) and
-  `.pi/extensions/superpowers.ts` (TypeScript). pi is the closest reference for
+- Reference: `.opencode/plugins/hyperpowers.js` (JavaScript) and
+  `.pi/extensions/hyperpowers.ts` (TypeScript). pi is the closest reference for
   any harness that has **no native skill tool**.
 
 ### Shape C — Instructions-file
@@ -789,8 +789,8 @@ Use this as the live index; when in doubt, read the files, not this table.
 | Copilot CLI | (shares Claude Code hook path; `COPILOT_CLI` env) | shell hook → `hooks/session-start` (`additionalContext`) | `references/copilot-tools.md` | `tests/hooks/` | — |
 | Gemini CLI | `gemini-extension.json` + `GEMINI.md` | instructions file `@`-includes bootstrap + mapping | `references/gemini-tools.md` | — | `gemini extensions install` |
 | Kimi Code | `.kimi-plugin/plugin.json` | manifest `sessionStart.skill` loads `using-hyperpowers` | inline `skillInstructions` in manifest | `tests/kimi/` | marketplace or `/plugins install` GitHub URL |
-| OpenCode | `.opencode/plugins/superpowers.js` (declared via root `package.json` `main`) | in-process: `config` hook registers skills dir; `experimental.chat.messages.transform` injects user message | inline in `superpowers.js` | `tests/opencode/` | `opencode.json` plugin git URL |
-| pi | `.pi/extensions/superpowers.ts` | in-process: `resources_discover` registers skills; `context` event injects user message; lifecycle-flag + compaction-aware | `piToolMapping()` inline **and** `references/pi-tools.md` | `tests/pi/` | repo-root `package.json` fields |
+| OpenCode | `.opencode/plugins/hyperpowers.js` (declared via root `package.json` `main`) | in-process: `config` hook registers skills dir; `experimental.chat.messages.transform` injects user message | inline in `superpowers.js` | `tests/opencode/` | `opencode.json` plugin git URL |
+| pi | `.pi/extensions/hyperpowers.ts` | in-process: `resources_discover` registers skills; `context` event injects user message; lifecycle-flag + compaction-aware | `piToolMapping()` inline **and** `references/pi-tools.md` | `tests/pi/` | repo-root `package.json` fields |
 
 ## Appendix B — Gotchas that have bitten porters
 

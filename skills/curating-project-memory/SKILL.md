@@ -18,9 +18,9 @@ start.
 The target state every project drifts toward. Each fact lives in exactly one layer; layers link
 downward and never restate each other.
 
-- **Root memory** — `CLAUDE.md`, lean (target ~100 lines, hard ceiling 150). Two halves:
-  `## Context` (descriptive: orientation, verified commands, key files) and `## Rules` (imperative,
-  project-specific always/nevers), ending in a `## Documentation index` of one-line links.
+- **Root memory** — `CLAUDE.md`, lean (target ~100 lines, hard ceiling 150). Three sections:
+  `## Context` (descriptive: orientation, verified commands, key files), `## Rules` (imperative,
+  project-specific always/nevers), and a `## Documentation index` of one-line links.
 - **Scoped rules** — `.claude/rules/*.md` with optional `paths:` glob frontmatter (Claude-native;
   loaded only when a matching file is worked on). Created only on a real scoping need.
 - **Documentation** — `docs/…`, the durable source of truth for detail. Root links to it.
